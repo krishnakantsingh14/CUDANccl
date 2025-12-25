@@ -41,3 +41,14 @@ std::ranges::generate(u, [&]() {
     return std::exp(-(x - L/2)*(x - L/2) );
     });
 ```
+
+**Think how to change this for loop with iterator**
+``` 
+for (int i=0; i<timeSteps; ++i) {
+    for (int j=1; j<N-1; ++j) {
+        u_new[j] = u[j] + alpha*(u[j+1] - 2.0*u[j] + u[j-1]);
+    }
+    std::ranges::swap(u, u_new);
+}
+```
+
