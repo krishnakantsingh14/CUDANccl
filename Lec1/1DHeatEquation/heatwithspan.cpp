@@ -7,9 +7,9 @@
 #include <numeric>
 
 
-void gaussian_initial_condition(std::span<double> uspan, int N, double L, double dx) { 
-
-    auto uview = std::views::iota(0, N) 
+void gaussian_initial_condition(std::span<double> uspan, double L, double dx) { 
+    // static const int n = uspan.size();
+    auto uview = std::views::iota(0uz, uspan.size()) 
         | std::views::transform ([=]( int i ) { // capture by value, for thread safety
             double x = i*dx;
             return std::exp(-std::pow(x - L/2.0, 2));
@@ -31,7 +31,6 @@ int main() {
 
     std::vector<double> u(N,0);
 
-    gaussian_initial_condition(u, N, L, dx);    
+    gaussian_initial_condition(u, L, dx);    
     std::cout << "Temperature at center: " << u[N/2] << std::endl;
-
 }
