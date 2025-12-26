@@ -52,3 +52,4 @@ for (int i=0; i<timeSteps; ++i) {
 }
 ```
 
+std::views::adjacent
